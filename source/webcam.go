@@ -138,6 +138,8 @@ func (s *WebcamSource) Open() error {
 				s.OutChan <- local
 
 			} else if err != nil {
+				exit := <-s.done
+				exit <- true
 				return err
 			}
 		}
